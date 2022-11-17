@@ -17,16 +17,17 @@
 //     }
 // }
 
-#[derive(Debug)]
-struct CustomError(String);
+use indicatif;
 
-fn main() -> Result<(), CustomError> {
-    let path = "mek.mek";
-    let content = std::fs::read_to_string(path)
-        .map_err(|err| CustomError(format!("Error reading `{}`: {}", path, err)))?;
-    // println!("{}", content);
-    println!("file content: {}", content);
-return Ok(());
+
+fn main() {
+    let pb = indicatif::ProgressBar::new(100);
+    for i in 0..100 {
+        // doMekMek
+        pb.println(format!("[+] finished #{}", i));
+        pb.inc(1);
+    }
+    pb.finish_with_message("done");
 }
 
 // #[derive(Debug)]
